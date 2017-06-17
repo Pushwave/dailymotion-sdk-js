@@ -122,31 +122,20 @@ DM.provide('Player',
         DM._domain.www = DM._domain.www.replace(/^https?\:/, '');
         DM.Player._PROTOCOL = (window.location && /^https?:$/.test(window.location.protocol)) ? window.location.protocol : 'http:';
 
-        var player = document.createElement("iframe");
-        DM.Array.forEach(['id', 'style', 'class'], function(attr)
-        {
-            var val = element.getAttribute(attr);
-            if (val) player.setAttribute(attr, val);
-        });
-        player.setAttribute("frameborder", "0");
-        player.setAttribute("allowfullscreen", "true");
-        player.setAttribute("webkitallowfullscreen", "true");
-        player.setAttribute("mozallowfullscreen", "true");
-        player.title = "Dailymotion " + options.title;
-        player.type = "text/html";
-        player.width = options.width;
-        player.height = options.height;
-        element.parentNode.replaceChild(player, element);
+        element.setAttribute("frameborder", "0");
+        element.setAttribute("allowfullscreen", "true");
+        element.setAttribute("webkitallowfullscreen", "true");
+        element.setAttribute("mozallowfullscreen", "true");
 
-        DM.copy(player, DM.Player);
+        DM.copy(element, DM.Player);
 
-        player.init(options.video, options.params);
+        element.init(options.video, options.params);
 
         if (typeof options.events == "object")
         {
             for (var name in options.events)
             {
-                player.addEventListener(name, options.events[name], false);
+                element.addEventListener(name, options.events[name], false);
             }
         }
 
