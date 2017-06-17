@@ -139,7 +139,7 @@ DM.provide('Player',
             }
         }
 
-        return player;
+        return element;
     },
 
     init: function(video, params)
